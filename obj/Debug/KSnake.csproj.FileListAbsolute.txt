@@ -1,0 +1,10 @@
+C:\Users\kmiha\OneDrive\Рабочий стол\work\Game_on_C#\KSnake\bin\Debug\KSnake.exe.config
+C:\Users\kmiha\OneDrive\Рабочий стол\work\Game_on_C#\KSnake\bin\Debug\KSnake.exe
+C:\Users\kmiha\OneDrive\Рабочий стол\work\Game_on_C#\KSnake\bin\Debug\KSnake.pdb
+C:\Users\kmiha\OneDrive\Рабочий стол\work\Game_on_C#\KSnake\obj\Debug\KSnake.csproj.AssemblyReference.cache
+C:\Users\kmiha\OneDrive\Рабочий стол\work\Game_on_C#\KSnake\obj\Debug\KSnake.Form1.resources
+C:\Users\kmiha\OneDrive\Рабочий стол\work\Game_on_C#\KSnake\obj\Debug\KSnake.Properties.Resources.resources
+C:\Users\kmiha\OneDrive\Рабочий стол\work\Game_on_C#\KSnake\obj\Debug\KSnake.csproj.GenerateResource.cache
+C:\Users\kmiha\OneDrive\Рабочий стол\work\Game_on_C#\KSnake\obj\Debug\KSnake.csproj.CoreCompileInputs.cache
+C:\Users\kmiha\OneDrive\Рабочий стол\work\Game_on_C#\KSnake\obj\Debug\KSnake.exe
+C:\Users\kmiha\OneDrive\Рабочий стол\work\Game_on_C#\KSnake\obj\Debug\KSnake.pdb
