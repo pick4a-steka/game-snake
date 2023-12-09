@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -13,18 +14,29 @@ namespace KSnake
 {
     public partial class Form1 : Form
     {
+        // ПЕРЕМЕННЫЕ =============================================================
         private static int WIDTH = 600; // дефолтные параметры окна
         private static int HEIGHT = 600; // дефолтные параматеры окна
         private static int sizeOneFields; // поле для размера клетки на карте
-        private Label lableScore;
+        //private System.Windows.Forms.Label lableScore;
         private List<PictureBox> snake_array = new List<PictureBox>(400);
+        // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
         Apple apple;
         Banana banana;
         Pear pear;
+        // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+        CounterApple cntApple;
+        CounterBanana cntBanana;
+        CounterPear cntPear;
+        // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
         private int dirX, dirY;
         private Image currImage;
         private Timer timer;
-        private int score = 0; 
+        private int score = 0;
+        private bool isPause = false;
+        private System.Windows.Forms.Label textPause;
+        // =========================================================================
+
         public Form1()
         {
             InitializeComponent();
@@ -32,10 +44,10 @@ namespace KSnake
             this.Width = WIDTH;
             this.Height = HEIGHT;
             sizeOneFields = 19;
-            lableScore = new Label();
-            lableScore.Text = "Score: 0";
-            lableScore.Location = new Point(30, 30);
-            this.Controls.Add(lableScore);
+            //lableScore = new System.Windows.Forms.Label();
+            //lableScore.Text = "Score: 0";
+            //lableScore.Location = new Point(30, 30);
+            //this.Controls.Add(lableScore);
             snake_array.Add(new PictureBox());
             snake_array[0].Location = new Point(380, 285);
             snake_array[0].Size = new Size(sizeOneFields, sizeOneFields);
@@ -46,6 +58,7 @@ namespace KSnake
             dirX = 0; dirY = -1;
             InitializeTimer();
             InitializeFruits();
+            InitCounters();
             geterationMap();
             this.KeyDown += new KeyEventHandler(Move);
         }
@@ -57,6 +70,46 @@ namespace KSnake
             timer.Tick += new EventHandler(update); // Метод, вызываемый при срабатывании таймера
             timer.Start();
         }
+        private void textPause_Paint(object sender, PaintEventArgs e)
+        {
+            ControlPaint.DrawBorder(e.Graphics, textPause.ClientRectangle, Color.Black, ButtonBorderStyle.Solid);
+        }
+        private void InitializeTextMenu()
+        {
+            // Настройка текста и его внешнего вида
+            textPause = new System.Windows.Forms.Label();
+            textPause.Text = "Игра на паузе";
+            textPause.Font = new Font(FontFamily.GenericMonospace, 14, FontStyle.Bold);
+            textPause.ForeColor = Color.Red;
+            textPause.Size = new Size(155, 30);
+            textPause.Location = new Point((int)(WIDTH / 3), (int)(HEIGHT / 2.5));
+            textPause.BackColor = Color.Green;
+            textPause.Paint += new PaintEventHandler(textPause_Paint);
+            this.Controls.Add(textPause);
+            // Перемещаем надпись в передний план
+            textPause.BringToFront();
+        }
+        private bool checkBorder()
+        {
+            if (snake_array[0].Location.X < 0 || snake_array[0].Location.X > WIDTH - 11 || snake_array[0].Location.Y > HEIGHT - 2 * sizeOneFields - 12 ||
+                snake_array[0].Location.Y < 95)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        private bool eatSelf()
+        {
+            for (int i = score; i >= 1; --i)
+            {
+                if (snake_array[0].Location == snake_array[i].Location)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
 
         private void eatFruits()
         {
@@ -64,7 +117,23 @@ namespace KSnake
                 (snake_array[0].Location.X == banana.pX && snake_array[0].Location.Y == banana.pY) ||
                 (snake_array[0].Location.X == pear.pX && snake_array[0].Location.Y == pear.pY))
             {
-                lableScore.Text = "Score: " + ++score;
+                //lableScore.Text = "Score: " + ++score;
+                ++score;
+                if (snake_array[0].Location.X == apple.pX && snake_array[0].Location.Y == apple.pY)
+                {
+                    cntApple.cnt++;
+                    cntApple.count.Text = "" + cntApple.cnt;
+                }
+                else if (snake_array[0].Location.X == banana.pX && snake_array[0].Location.Y == banana.pY)
+                {
+                    cntBanana.cnt++;
+                    cntBanana.count.Text = "" + cntBanana.cnt;
+                }
+                else
+                {
+                    cntPear.cnt++;
+                    cntPear.count.Text = "" + cntPear.cnt;
+                }
                 PictureBox new_segment = new PictureBox();
                 new_segment.Location = new Point(snake_array[score - 1].Location.X + sizeOneFields * dirX, snake_array[score - 1].Location.Y - sizeOneFields * dirY);
                 new_segment.Size = new Size(sizeOneFields, sizeOneFields);
@@ -86,10 +155,12 @@ namespace KSnake
 
         private void update(Object myObject, EventArgs eventArgs)
         {
-            Console.WriteLine($"X: {snake_array[score].Location.X}, Y: {snake_array[score].Location.Y}");
+            Console.WriteLine($"Score = {score}");
             eatFruits();
             moveSnake();
-            //snake.Location = new Point(snake.Location.X + dirX * sizeOneFields, snake.Location.Y + dirY * sizeOneFields);
+            if (score > 25) timer.Interval = 100;
+            else if (score > 40) timer.Interval = 80;
+            if (eatSelf() || checkBorder()) this.Close();
 
             if (currImage != null)
             {
@@ -150,6 +221,19 @@ namespace KSnake
                 case "S":
                     dirY = 1;
                     dirX = 0;
+                    break;
+                case "Escape":
+                    isPause = !isPause;
+                    if (isPause)
+                    {
+                        timer.Stop();
+                        InitializeTextMenu();
+                    }
+                    else
+                    {
+                        timer.Start();
+                        this.Controls.Remove(textPause);
+                    }
                     break;
             }
         }

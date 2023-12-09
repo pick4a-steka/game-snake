@@ -101,9 +101,9 @@ namespace KSnake
             banana = new Banana(WIDTH, HEIGHT, sizeOneFields);
             pear = new Pear(WIDTH, HEIGHT, sizeOneFields);
 
-            Console.WriteLine($"Apple: X={apple.pX}, Y={apple.pY}");
-            Console.WriteLine($"Banana: X={banana.pX}, Y={banana.pY}");
-            Console.WriteLine($"Pear: X={pear.pX}, Y={pear.pY}");
+            apple.pictureBox.BackColor = Color.FromArgb(172, 192, 104);
+            banana.pictureBox.BackColor = Color.FromArgb(172, 192, 104);
+            pear.pictureBox.BackColor = Color.FromArgb(172, 192, 104);
 
             // Добавляем PictureBox на форму
             this.Controls.Add(apple.pictureBox);
