@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Description.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Description.Designer.cs">
+      <DependentUpon>Description.cs</DependentUpon>
+    </Compile>
     <Compile Include="fonts\Counters.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -58,10 +64,49 @@
     <Compile Include="Fruits.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="InputName.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InputName.Designer.cs">
+      <DependentUpon>InputName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainMenu.Designer.cs">
+      <DependentUpon>MainMenu.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RecordsView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RecordsView.Designer.cs">
+      <DependentUpon>RecordsView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ResultGame.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ResultGame.Designer.cs">
+      <DependentUpon>ResultGame.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Screensaver.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Screensaver.Designer.cs">
+      <DependentUpon>Screensaver.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Description.resx">
+      <DependentUpon>Description.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InputName.resx">
+      <DependentUpon>InputName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainMenu.resx">
+      <DependentUpon>MainMenu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -71,7 +116,17 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="RecordsView.resx">
+      <DependentUpon>RecordsView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ResultGame.resx">
+      <DependentUpon>ResultGame.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Screensaver.resx">
+      <DependentUpon>Screensaver.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="fonts\EpilepsySans.ttf" />
     <None Include="fonts\EpilepsySansBold.ttf" />
     <None Include="Properties\Settings.settings">
@@ -91,7 +146,9 @@
   <ItemGroup>
     <Content Include="im\apple.png" />
     <Content Include="im\banana.png" />
+    <None Include="im\mainFone.jpg" />
     <Content Include="im\pear.png" />
+    <None Include="im\screensaver.png" />
     <Content Include="im\snake-grass.jpg" />
     <Content Include="im\snake-head-A.png" />
     <Content Include="im\snake-head-D.png" />

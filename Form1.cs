@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.IO;
 using System.Linq;
 using System.Reflection.Emit;
 using System.Text;
@@ -35,11 +36,16 @@ namespace KSnake
         private int score = 0;
         private bool isPause = false;
         private System.Windows.Forms.Label textPause;
+        private MainMenu menu;
+        private string username;
+        private const string filename = "game_result.dat";
         // =========================================================================
 
-        public Form1()
+        public Form1(MainMenu menu, string name)
         {
             InitializeComponent();
+            this.username = name;
+            this.menu = menu;
             this.DoubleBuffered = true;
             this.Width = WIDTH;
             this.Height = HEIGHT;
@@ -160,7 +166,16 @@ namespace KSnake
             moveSnake();
             if (score > 25) timer.Interval = 100;
             else if (score > 40) timer.Interval = 80;
-            if (eatSelf() || checkBorder()) this.Close();
+            if (eatSelf() || checkBorder())
+            {
+                timer.Stop();
+                ResultGame resultGame = new ResultGame(cntApple.cnt, cntBanana.cnt, cntPear.cnt, menu, username);
+                resultGame.Show();
+
+                SaveResult(); // Записываем результаты в базу данных
+
+                this.Close();
+            }
 
             if (currImage != null)
             {
@@ -175,6 +190,19 @@ namespace KSnake
             snake_array[0].Image = currImage;
 
             Invalidate();
+        }
+
+        public void SaveResult()
+        {
+            using (BinaryWriter writer = new BinaryWriter(File.Open(filename, FileMode.Append)))
+            {
+                int all = cntApple.cnt + cntBanana.cnt + cntPear.cnt;
+                writer.Write(username);
+                writer.Write(cntApple.cnt);
+                writer.Write(cntBanana.cnt);
+                writer.Write(cntPear.cnt);
+                writer.Write(all);
+            }
         }
 
         private void Form1_Paint(object sender, PaintEventArgs e)

@@ -8,3 +8,9 @@ C:\Users\kmiha\OneDrive\Рабочий стол\work\Game_on_C#\KSnake\obj\Debug
 C:\Users\kmiha\OneDrive\Рабочий стол\work\Game_on_C#\KSnake\obj\Debug\KSnake.csproj.CoreCompileInputs.cache
 C:\Users\kmiha\OneDrive\Рабочий стол\work\Game_on_C#\KSnake\obj\Debug\KSnake.exe
 C:\Users\kmiha\OneDrive\Рабочий стол\work\Game_on_C#\KSnake\obj\Debug\KSnake.pdb
+C:\Users\kmiha\OneDrive\Рабочий стол\work\Game_on_C#\KSnake\obj\Debug\KSnake.MainMenu.resources
+C:\Users\kmiha\OneDrive\Рабочий стол\work\Game_on_C#\KSnake\obj\Debug\KSnake.ResultGame.resources
+C:\Users\kmiha\OneDrive\Рабочий стол\work\Game_on_C#\KSnake\obj\Debug\KSnake.InputName.resources
+C:\Users\kmiha\OneDrive\Рабочий стол\work\Game_on_C#\KSnake\obj\Debug\KSnake.Screensaver.resources
+C:\Users\kmiha\OneDrive\Рабочий стол\work\Game_on_C#\KSnake\obj\Debug\KSnake.Description.resources
+C:\Users\kmiha\OneDrive\Рабочий стол\work\Game_on_C#\KSnake\obj\Debug\KSnake.RecordsView.resources
