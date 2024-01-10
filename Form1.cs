@@ -19,7 +19,6 @@ namespace KSnake
         private static int WIDTH = 600; // дефолтные параметры окна
         private static int HEIGHT = 600; // дефолтные параматеры окна
         private static int sizeOneFields; // поле для размера клетки на карте
-        //private System.Windows.Forms.Label lableScore;
         private List<PictureBox> snake_array = new List<PictureBox>(400);
         // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
         Apple apple;
@@ -50,10 +49,6 @@ namespace KSnake
             this.Width = WIDTH;
             this.Height = HEIGHT;
             sizeOneFields = 19;
-            //lableScore = new System.Windows.Forms.Label();
-            //lableScore.Text = "Score: 0";
-            //lableScore.Location = new Point(30, 30);
-            //this.Controls.Add(lableScore);
             snake_array.Add(new PictureBox());
             snake_array[0].Location = new Point(380, 285);
             snake_array[0].Size = new Size(sizeOneFields, sizeOneFields);
@@ -123,7 +118,6 @@ namespace KSnake
                 (snake_array[0].Location.X == banana.pX && snake_array[0].Location.Y == banana.pY) ||
                 (snake_array[0].Location.X == pear.pX && snake_array[0].Location.Y == pear.pY))
             {
-                //lableScore.Text = "Score: " + ++score;
                 ++score;
                 if (snake_array[0].Location.X == apple.pX && snake_array[0].Location.Y == apple.pY)
                 {
